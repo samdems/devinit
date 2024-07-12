@@ -12,7 +12,7 @@ apt update
 apt install -y zsh nodejs neovim git
 
 # Copy .zshrc to the sam's home directory and set permissions
-cp /root/.zshrc /home/sam/
+cp .zshrc /home/sam/
 chown sam:sam /home/sam/.zshrc
 
 # Switch to the 'sam' user to set up configurations
