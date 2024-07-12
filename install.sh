@@ -16,7 +16,7 @@ chsh -s /usr/bin/zsh sam
 
 # Copy the .zshrc configuration file and .ssh directory to 'sam's home directory
 cp .zshrc /home/sam/
-cp -r .ssh /home/sam/
+cp -r /root/.ssh /home/sam/
 # Change ownership of the copied files to 'sam'
 chown sam:sam /home/sam/.zshrc
 chown -R sam:sam /home/sam/.ssh
