@@ -24,5 +24,4 @@ e() {
   fi
 }
 
-echo export PATH="$PATH:/opt/nvim-linux64/bin" > ~/. zshrc
 export EDITOR=nvim
