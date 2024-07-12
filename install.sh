@@ -9,7 +9,7 @@ usermod -aG sudo sam
 
 # Install necessary packages
 apt update
-apt install -y zsh npm nodejs neovim git
+apt install -y zsh nodejs neovim git
 
 # Copy .zshrc to the sam's home directory and set permissions
 cp /root/.zshrc /home/sam/
