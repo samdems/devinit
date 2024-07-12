@@ -1,4 +1,6 @@
 sudo apt install zsh
+sudo apt install npm
+sudo apt install nodejs
 cp .zshrc ~/
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
 sudo rm -rf /opt/nvim
