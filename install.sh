@@ -21,7 +21,7 @@ else
 fi
 
 apt update
-apt install -y zsh nodejs neovim git build-essential
+apt install -y zsh npm nodejs neovim git build-essential
 
 # Install GitHub CLI
 apt install -y curl
@@ -50,7 +50,7 @@ EOF
 chown -R sam:sam /home/sam/.config/nvim
 
 echo "Setup completed for user 'sam'."
-
+cd /home/sam
 su sam
 
 
