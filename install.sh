@@ -42,6 +42,7 @@ su - sam <<'EOF'
 cd /home/sam
 git clone https://github.com/samdems/nvimConfig.git ~/.config/nvim
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+rm -f ~/.zshrc
 wget https://raw.githubusercontent.com/samdems/devinit/main/.zshrc
 EOF
 
