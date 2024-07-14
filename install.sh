@@ -30,18 +30,19 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githu
 apt update
 apt install -y gh
 
-wget https://raw.githubusercontent.com/samdems/devinit/main/.zshrc
-cp .zshrc /home/sam/
-cp -r /root/.ssh /home/sam/
+chown -R sam:sam /home/sam
+chown -R sam:sam /home/sam/projects
 
-chown sam:sam /home/sam/.zshrc
+cp -r /root/.ssh /home/sam/
 chown -R sam:sam /home/sam/.ssh
 
 # Switch to 'sam' user and run the commands within EOF block
 su - sam <<'EOF'
 # Clone the nvimConfig repository to the appropriate location
+cd /home/sam
 git clone https://github.com/samdems/nvimConfig.git ~/.config/nvim
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+wget https://raw.githubusercontent.com/samdems/devinit/main/.zshrc
 EOF
 
 # Change ownership of the cloned repository to 'sam'
