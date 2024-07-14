@@ -2,13 +2,24 @@
 
 set -e
 
-# Add user 'sam' with default settings
-adduser --gecos "" sam
+mkdir -p /home/sam/projects
+mount -o discard,defaults,noatime /dev/disk/by-id/scsi-0DO_Volume_activeprojects /home/sam/projects
+echo '/dev/disk/by-id/scsi-0DO_Volume_activeprojects /home/sam/projects ext4 defaults,nofail,discard 0 0' | sudo tee -a /etc/fstab
 
-# Add 'sam' to the 'sudo' group
-usermod -aG sudo sam
+if [ -d "/home/sam/projects" ]; then
+    echo "Volume attached successfully."
+else
+    echo "Volume attachment failed."
+fi
 
-# Update package list and install necessary packages
+if id "sam" &>/dev/null; then
+    echo "User 'sam' already exists."
+else
+  adduser --gecos "" sam
+  usermod -aG sudo sam
+  chsh -s /usr/bin/zsh sam
+fi
+
 apt update
 apt install -y zsh nodejs neovim git build-essential
 
@@ -19,13 +30,10 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githu
 apt update
 apt install -y gh
 
-# Set zsh as the default shell for 'sam'
-chsh -s /usr/bin/zsh sam
-
-# Copy the .zshrc configuration file and .ssh directory to 'sam's home directory
+wget https://raw.githubusercontent.com/samdems/devinit/main/.zshrc
 cp .zshrc /home/sam/
 cp -r /root/.ssh /home/sam/
-# Change ownership of the copied files to 'sam'
+
 chown sam:sam /home/sam/.zshrc
 chown -R sam:sam /home/sam/.ssh
 
