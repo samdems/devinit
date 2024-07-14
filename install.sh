@@ -33,6 +33,7 @@ chown -R sam:sam /home/sam/.ssh
 su - sam <<'EOF'
 # Clone the nvimConfig repository to the appropriate location
 git clone https://github.com/samdems/nvimConfig.git ~/.config/nvim
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 EOF
 
 # Change ownership of the cloned repository to 'sam'
@@ -42,6 +43,5 @@ echo "Setup completed for user 'sam'."
 
 su sam
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 
