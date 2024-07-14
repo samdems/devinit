@@ -4,12 +4,20 @@ set -e
 
 # Add user 'sam' with default settings
 adduser --gecos "" sam
+
 # Add 'sam' to the 'sudo' group
 usermod -aG sudo sam
 
 # Update package list and install necessary packages
 apt update
 apt install -y zsh nodejs neovim git build-essential
+
+# Install GitHub CLI
+apt install -y curl
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+apt update
+apt install -y gh
 
 # Set zsh as the default shell for 'sam'
 chsh -s /usr/bin/zsh sam
@@ -31,4 +39,9 @@ EOF
 chown -R sam:sam /home/sam/.config/nvim
 
 echo "Setup completed for user 'sam'."
+
+su sam
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 
